@@ -1,0 +1,45 @@
+          <form method="get">
+            <% pathrandom.forEach(function(item) { %>
+              <tr>
+                <% if(item.Rearch > Math.max(item.Liked,item.Share,item.comment) ){ %>
+                <td>
+                  <%= item.Mypath %>
+                </td>
+                <td>
+                  <%= item.Rearch %>
+                </td>
+                <td>
+                  <%= item.Liked %>
+                </td>
+                <td>
+                  <%= item.Share %>
+                </td>
+                <td>
+                  <%= item.comment %>
+                </td>
+                <td>
+                  <%= Number(item.comment)+Number(item.Share)+ Number(item.Liked) %>
+                </td>
+                <td>
+                  <%= ((Number(item.comment)+Number(item.Share)+ Number(item.Liked))/Number(item.Rearch)).toFixed(2) %>
+                </td>
+                <td>
+                  <% if(((Number(item.comment)+Number(item.Share)+ Number(item.Liked))/Number(item.Rearch)).toFixed(2) >= 0.1){ %>
+                    <a class="btn btn-success delete">Viral</a>
+                    
+                    <a href="../delete/<%= item.path_id %>" class="btn btn-danger delete">Delete</a>
+
+                <% } else { %>
+                  <a class="btn btn-secondary delete">Viral</a>
+                   
+                  <a href="../delete/<%= item.path_id %>" class="btn btn-danger delete">Delete</a>
+                <% } %>
+                  
+                </td>
+                <% } else { %>
+                  <a href="../delete/<%= item.path_id %>" class="btn btn-danger delete">BuBu</a>
+                <% } %>
+              </tr>
+              <% }) %>
+          </form>
+        </thead>
